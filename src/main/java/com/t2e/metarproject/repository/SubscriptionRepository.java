@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
+public interface SubscriptionRepository extends JpaRepository<Subscription, String> {
     @Query("select s from Subscription s where s.icaoCode = ?1 ")
     Optional<Subscription> getByIcaoCode(String icaoCode);
 }
