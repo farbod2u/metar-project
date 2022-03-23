@@ -140,4 +140,29 @@ class SubscriptionControllerTest {
                 .andExpect(status().isNotFound())
                 .andReturn();
     }
+
+    @SneakyThrows
+    @Test
+    void active() {
+        //given
+        String icaoCado = "OIII";
+        int active = 1;
+        var subscription = new Subscription(icaoCado, null, active);
+        given(subscriptionService.enable(icaoCado, active)).willReturn(subscription);
+
+        var url = "/subscriptions/" + icaoCado;
+
+        //when
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.request(HttpMethod.PUT, url)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(subscription)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String actualResult = mvcResult.getResponse().getContentAsString();
+        String expectedResult = objectMapper.writeValueAsString(subscription);
+
+        //then
+        assertThat(actualResult).isEqualTo(expectedResult);
+    }
 }
