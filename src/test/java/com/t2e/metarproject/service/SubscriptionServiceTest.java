@@ -116,4 +116,45 @@ class SubscriptionServiceTest {
                 .isInstanceOf(EntityNotFoundException.class)
                 .hasMessageContaining("ICAO Code not found");
     }
+
+    @Test
+    void enable() {
+        //given
+        String icaoCode = "OIII";
+        int active = 0;
+        Subscription entity = new Subscription(icaoCode, null, active);
+        given(subscriptionRepository.getByIcaoCode(icaoCode)).willReturn(Optional.of(entity));
+
+        //when
+        Subscription result = underTest.enable(icaoCode, active);
+
+        //then
+        assertThat(result).isEqualTo(entity);
+    }
+
+    @Test
+    void enable_invalid_active() {
+        //given
+        String icaoCode = "OIII";
+        int active = 10;
+
+        //when
+        //then
+        assertThatThrownBy(() -> underTest.enable(icaoCode, active))
+                .isInstanceOf(RequestException.class)
+                .hasMessageContaining("Valid values for Active are 0 and 1.");
+    }
+
+    @Test
+    void enable_invalid_icaoCode() {
+        //given
+        int active = 0;
+        given(subscriptionRepository.getByIcaoCode(anyString())).willReturn(Optional.empty());
+
+        //when
+        //then
+        assertThatThrownBy(() -> underTest.enable(anyString(), active))
+                .isInstanceOf(EntityNotFoundException.class)
+                .hasMessageContaining("ICAO Code not found");
+    }
 }
