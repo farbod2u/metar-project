@@ -1,0 +1,26 @@
+version: "3"
+services:
+  mysql-metar-db:
+    image: mysql
+    networks:
+      - metar-2-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=metar-db
+    container_name: mysql-metar-db
+
+  metar-project:
+#    build: .
+    image: metar-project:latest
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    networks:
+      - metar-2-db
+    depends_on:
+      - mysql-metar-db
+    container_name: metar-project
+
+networks:
+  metar-2-db:
+
