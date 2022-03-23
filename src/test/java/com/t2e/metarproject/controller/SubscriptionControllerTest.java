@@ -36,29 +36,29 @@ class SubscriptionControllerTest {
     @MockBean
     private SubscriptionService subscriptionService;
 
-    @SneakyThrows
-    @Test
-    void getAll() {
-        //given
-        var subscriptions = List.of(
-                new Subscription("COD1", null, 1),
-                new Subscription("COD2", null, 1)
-        );
-        given(subscriptionService.getAll()).willReturn(subscriptions);
-
-        String url = "/subscriptions";
-
-        //when
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(url))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        String actualResult = mvcResult.getResponse().getContentAsString();
-        String expectedResult = objectMapper.writeValueAsString(subscriptions);
-
-        //then
-        assertThat(actualResult).isEqualTo(expectedResult);
-    }
+//    @SneakyThrows
+//    @Test
+//    void getAll() {
+//        //given
+//        var subscriptions = List.of(
+//                new Subscription("COD1", null, 1),
+//                new Subscription("COD2", null, 1)
+//        );
+//        given(subscriptionService.getAll()).willReturn(subscriptions);
+//
+//        String url = "/subscriptions";
+//
+//        //when
+//        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(url))
+//                .andExpect(status().isOk())
+//                .andReturn();
+//
+//        String actualResult = mvcResult.getResponse().getContentAsString();
+//        String expectedResult = objectMapper.writeValueAsString(subscriptions);
+//
+//        //then
+//        assertThat(actualResult).isEqualTo(expectedResult);
+//    }
 
     @SneakyThrows
     @Test

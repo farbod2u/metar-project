@@ -77,17 +77,17 @@ class SubscriptionServiceTest {
                 .hasMessageContaining(error);
     }
 
-    @Test
-    void getAll() {
-        //given
-        given(subscriptionRepository.findAll()).willReturn(List.of());
-
-        //when
-        underTest.getAll();
-
-        //then
-        verify(subscriptionRepository).findAll();
-    }
+//    @Test
+//    void getAll() {
+//        //given
+//        given(subscriptionRepository.findAll()).willReturn(List.of());
+//
+//        //when
+//        underTest.getAll();
+//
+//        //then
+//        verify(subscriptionRepository).findAll();
+//    }
 
     @Test
     void delete_without_error() {
