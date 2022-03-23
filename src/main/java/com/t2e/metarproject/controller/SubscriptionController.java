@@ -1,6 +1,5 @@
 package com.t2e.metarproject.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.t2e.metarproject.entity.Subscription;
 import com.t2e.metarproject.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +15,10 @@ import java.util.List;
 public class SubscriptionController {
 
     private final SubscriptionService subscriptionService;
-    private final ObjectMapper objectMapper;
 
     @GetMapping
-    public ResponseEntity<List<Subscription>> getAll(Subscription subscription) {
-        return new ResponseEntity<>(subscriptionService.getAll(subscription), HttpStatus.OK);
+    public ResponseEntity<List<Subscription>> getAll() {
+        return new ResponseEntity<>(subscriptionService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping
@@ -29,12 +27,12 @@ public class SubscriptionController {
     }
 
     @DeleteMapping("/{icaoCode}")
-    public ResponseEntity<Subscription> delete(@PathVariable String icaoCode) {
+    public ResponseEntity<Subscription> delete(@PathVariable String icaoCode){
         return new ResponseEntity<>(subscriptionService.delete(icaoCode), HttpStatus.OK);
     }
 
     @PutMapping("/{icaoCode}")
-    public ResponseEntity<Subscription> active(@PathVariable String icaoCode, @RequestBody Subscription entity) {
+    public ResponseEntity<Subscription> active(@PathVariable String icaoCode, @RequestBody Subscription entity){
         return new ResponseEntity<>(subscriptionService.enable(icaoCode, entity.getActive()), HttpStatus.OK);
     }
 }
