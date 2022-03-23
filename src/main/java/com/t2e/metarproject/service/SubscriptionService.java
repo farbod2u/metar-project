@@ -7,6 +7,7 @@ import com.t2e.metarproject.repository.SubscriptionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,4 +46,17 @@ public class SubscriptionService {
             throw new EntityNotFoundException("ICAO Code not found");
     }
 
+    @Transactional(rollbackOn = Exception.class)
+    public Subscription enable(String icaoCode, Integer active) {
+        if(active < 0 || active > 1)
+            throw new RequestException("Valid values for Active are 0 and 1.");
+
+        Optional<Subscription> entity = subscriptionRepository.getByIcaoCode(icaoCode);
+        if (entity.isPresent()) {
+            entity.get().setActive(active);
+
+            return entity.get();
+        } else
+            throw new EntityNotFoundException("ICAO Code not found");
+    }
 }

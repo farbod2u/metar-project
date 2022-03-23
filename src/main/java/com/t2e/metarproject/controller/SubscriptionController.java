@@ -30,4 +30,9 @@ public class SubscriptionController {
     public ResponseEntity<Subscription> delete(@PathVariable String icaoCode){
         return new ResponseEntity<>(subscriptionService.delete(icaoCode), HttpStatus.OK);
     }
+
+    @PutMapping("/{icaoCode}")
+    public ResponseEntity<Subscription> active(@PathVariable String icaoCode, @RequestBody Subscription entity){
+        return new ResponseEntity<>(subscriptionService.enable(icaoCode, entity.getActive()), HttpStatus.OK);
+    }
 }
