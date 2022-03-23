@@ -12,3 +12,9 @@ $ docker-compose up<br/>
    4.2- run following commands:<br/>
         $ cd /[path to metar-project]/auto<br/>
         $ crontab ./auto.job<br/>
+---------------------------------------
+Search subscriptions examples:<br/>
+    - http://localhost:8080/subscriptions?icaoCode=LZ <br/>
+      find all subscriptions that icaoCode has LZ. <br/>
+    - http://localhost:8080/subscriptions?icaoCode=LZ&active=1 <br/>
+      find all subscriptions that icaoCode has LZ and active equal to 1. <br/>
