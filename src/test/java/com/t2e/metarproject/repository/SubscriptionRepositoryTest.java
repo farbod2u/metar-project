@@ -26,7 +26,7 @@ class SubscriptionRepositoryTest {
     void getByIcaoCode_found() {
         //given
         String icaoCode = "LZDA";
-        Subscription entity = new Subscription(icaoCode, null);
+        Subscription entity = new Subscription(icaoCode, null, 1);
         subscriptionRepository.save(entity);
 
         //when

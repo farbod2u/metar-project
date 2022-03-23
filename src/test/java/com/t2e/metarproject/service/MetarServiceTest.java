@@ -38,7 +38,7 @@ class MetarServiceTest {
     void getLastMetarByIcaoCode_found() {
         //given
         String icaoCode = "OIII";
-        var subscription = new Subscription(icaoCode, null);
+        var subscription = new Subscription(icaoCode, null, 1);
         var metar = new Metar(null, "METAR " + icaoCode + " 121200Z 0902MPS 090V150 2000 " +
                 "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), subscription);
 
@@ -68,7 +68,7 @@ class MetarServiceTest {
     void save() {
         //given
         String icaoCode = "OIII";
-        var subscription = new Subscription(icaoCode, null);
+        var subscription = new Subscription(icaoCode, null, 1);
         var metar = new Metar(null, "METAR " + icaoCode + " 121200Z 0902MPS 090V150 2000 " +
                 "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), subscription);
 
@@ -119,7 +119,7 @@ class MetarServiceTest {
     void save_with_error() {
         //given
         String icaoCode = "OIII";
-        var subscription = new Subscription(icaoCode, null);
+        var subscription = new Subscription(icaoCode, null, 1);
         var metar = new Metar(null, "METAR " + icaoCode + " 121200Z 0902MPS 090V150 2000 " +
                 "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), subscription);
 

@@ -36,7 +36,7 @@ class SubscriptionServiceTest {
     void save() {
         //given
         String icaoCode = "LZDA";
-        Subscription entity = new Subscription(icaoCode, null);
+        Subscription entity = new Subscription(icaoCode, null, 1);
         given(subscriptionRepository.save(entity)).willReturn(entity);
 
         //when
@@ -64,7 +64,7 @@ class SubscriptionServiceTest {
     void save_with_error() {
         //given
         String icaoCode = "LZDA";
-        Subscription entity = new Subscription(icaoCode, null);
+        Subscription entity = new Subscription(icaoCode, null, 1);
         String error = "Error";
         given(subscriptionRepository.save(entity)).willThrow(new RequestException(error));
 
@@ -93,7 +93,7 @@ class SubscriptionServiceTest {
     void delete_without_error() {
         //given
         String icaoCode = "LDZA";
-        Subscription entity = new Subscription(icaoCode, null);
+        Subscription entity = new Subscription(icaoCode, null, 1);
         given(subscriptionRepository.getByIcaoCode(icaoCode)).willReturn(Optional.of(entity));
 
         //when

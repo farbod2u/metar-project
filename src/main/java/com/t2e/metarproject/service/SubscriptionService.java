@@ -20,7 +20,7 @@ public class SubscriptionService {
         if (!icaoCode.matches("[A-Z&&[^IJXQ]]{1}[A-Z]{3}"))
             throw new RequestException("ICAO code is incorrect.");
 
-        Subscription entity = new Subscription(icaoCode, null);
+        Subscription entity = new Subscription(icaoCode, null, 1);
         try {
             return subscriptionRepository.save(entity);
         } catch (Exception ex) {

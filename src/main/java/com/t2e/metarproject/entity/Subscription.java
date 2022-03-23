@@ -20,6 +20,9 @@ public class Subscription {
     @Column(nullable = false)
     private LocalDateTime saveDate;
 
+    @Column(nullable = false)
+    private Integer active;
+
     @PrePersist
     void defaults() {
         this.saveDate = LocalDateTime.now();

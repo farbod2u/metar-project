@@ -41,8 +41,8 @@ class SubscriptionControllerTest {
     void getAll() {
         //given
         var subscriptions = List.of(
-                new Subscription("COD1", null),
-                new Subscription("COD2", null)
+                new Subscription("COD1", null, 1),
+                new Subscription("COD2", null, 1)
         );
         given(subscriptionService.getAll()).willReturn(subscriptions);
 
@@ -65,7 +65,7 @@ class SubscriptionControllerTest {
     void save() {
         //given
         String icaoCode = "COD1";
-        var entity = new Subscription(icaoCode, null);
+        var entity = new Subscription(icaoCode, null, 1);
         given(subscriptionService.save(icaoCode)).willReturn(entity);
 
         var url = "/subscriptions";
@@ -90,7 +90,7 @@ class SubscriptionControllerTest {
     void save_invalid_icaoCode() {
         //given
         String icaoCode = "COD1";
-        var entity = new Subscription(icaoCode, null);
+        var entity = new Subscription(icaoCode, null, 1);
         given(subscriptionService.save(anyString())).willThrow(RequestException.class);
 
         var url = "/subscriptions";
@@ -109,7 +109,7 @@ class SubscriptionControllerTest {
     void delete() {
         //given
         String icaoCado = "OIII";
-        var subscription = new Subscription(icaoCado, null);
+        var subscription = new Subscription(icaoCado, null, 1);
         given(subscriptionService.delete(icaoCado)).willReturn(subscription);
 
         var url = "/subscriptions/" + icaoCado;

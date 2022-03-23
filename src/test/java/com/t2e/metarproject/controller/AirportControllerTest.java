@@ -81,7 +81,7 @@ class AirportControllerTest {
     void save() {
         //given
         var icaoCode = "OIII";
-        var metar = new Metar(null, "METAR_DATA", LocalDateTime.now(), new Subscription(icaoCode, null));
+        var metar = new Metar(null, "METAR_DATA", LocalDateTime.now(), new Subscription(icaoCode, null, 1));
         given(metarService.save(icaoCode, metar)).willReturn(metar);
 
         var url = "/airport/" + icaoCode + "/METAR";
@@ -105,7 +105,7 @@ class AirportControllerTest {
     void save_icaoCode_notfound() {
         //given
         var icaoCode = "OIII";
-        var metar = new Metar(null, "METAR_DATA", LocalDateTime.now(), new Subscription(icaoCode, null));
+        var metar = new Metar(null, "METAR_DATA", LocalDateTime.now(), new Subscription(icaoCode, null, 1));
         given(metarService.save(icaoCode, metar)).willThrow(EntityNotFoundException.class);
 
         var url = "/airport/" + icaoCode + "/METAR";
@@ -125,7 +125,7 @@ class AirportControllerTest {
     void save_invalidMetar() {
         //given
         var icaoCode = "OIII";
-        var metar = new Metar(null, "METAR_DATA", LocalDateTime.now(), new Subscription(icaoCode, null));
+        var metar = new Metar(null, "METAR_DATA", LocalDateTime.now(), new Subscription(icaoCode, null, 1));
         given(metarService.save(icaoCode, metar)).willThrow(InvalidMetarException.class);
 
         var url = "/airport/" + icaoCode + "/METAR";
@@ -145,7 +145,7 @@ class AirportControllerTest {
     void save_withError() {
         //given
         var icaoCode = "OIII";
-        var metar = new Metar(null, "METAR_DATA", LocalDateTime.now(), new Subscription(icaoCode, null));
+        var metar = new Metar(null, "METAR_DATA", LocalDateTime.now(), new Subscription(icaoCode, null, 1));
         given(metarService.save(icaoCode, metar)).willThrow(RequestException.class);
 
         var url = "/airport/" + icaoCode + "/METAR";
