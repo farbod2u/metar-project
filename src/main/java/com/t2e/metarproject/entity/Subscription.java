@@ -25,6 +25,11 @@ public class Subscription {
 
     @PrePersist
     void defaults() {
-        this.saveDate = LocalDateTime.now();
+        if (saveDate == null)
+            this.saveDate = LocalDateTime.now();
+
+        if (active == null)
+            active = 1;
+
     }
 }
