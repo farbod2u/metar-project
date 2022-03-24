@@ -35,7 +35,7 @@ class MetarRepositoryTest {
         String icaoCode = "OIII";
         var subscription = subscriptionRepository.save(new Subscription(icaoCode, null, 1));
         var metar = new Metar(null, "METAR " + icaoCode + " 121200Z 0902MPS 090V150 2000 " +
-                "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), subscription);
+                "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), subscription, null,null,null,null);
         metarRepository.save(metar);
 
         //when

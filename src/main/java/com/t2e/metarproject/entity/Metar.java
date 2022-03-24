@@ -28,6 +28,11 @@ public class Metar {
     @JoinColumn(name = "icaoCode", nullable = false)
     private Subscription subscription;
 
+    private LocalDateTime timestamp;
+    private Float windSpeed;
+    private Float temperature;
+    private Float visibility;
+
     @PrePersist
     void defaults() {
         if (saveDate == null)

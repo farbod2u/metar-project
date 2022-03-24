@@ -40,7 +40,7 @@ class MetarServiceTest {
         String icaoCode = "OIII";
         var subscription = new Subscription(icaoCode, null, 1);
         var metar = new Metar(null, "METAR " + icaoCode + " 121200Z 0902MPS 090V150 2000 " +
-                "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), subscription);
+                "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), subscription, null,null,null,null);
 
         given(metarRepository.getLastMetarByIcaoCode(icaoCode)).willReturn(Optional.of(metar));
 
@@ -70,7 +70,7 @@ class MetarServiceTest {
         String icaoCode = "OIII";
         var subscription = new Subscription(icaoCode, null, 1);
         var metar = new Metar(null, "METAR " + icaoCode + " 121200Z 0902MPS 090V150 2000 " +
-                "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), subscription);
+                "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), subscription, null,null,null,null);
 
         given(metarRepository.save(metar)).willReturn(metar);
         given(subscriptionRepository.getByIcaoCode(icaoCode)).willReturn(Optional.of(subscription));
@@ -89,7 +89,7 @@ class MetarServiceTest {
         //given
         String icaoCode = "OIII";
         var metar = new Metar(null, "METAR " + icaoCode + " 121200Z 0902MPS 090V150 2000 " +
-                "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), null);
+                "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), null, null,null,null,null);
         given(subscriptionRepository.getByIcaoCode(anyString())).willReturn(Optional.empty());
 
         //when
@@ -105,7 +105,7 @@ class MetarServiceTest {
         //given
         String icaoCode = "OIII";
         var metar = new Metar(null, "121200Z 0902MPS 090V150 2000 " +
-                "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), null);
+                "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), null, null,null,null,null);
 
         //when
 
@@ -121,7 +121,7 @@ class MetarServiceTest {
         String icaoCode = "OIII";
         var subscription = new Subscription(icaoCode, null, 1);
         var metar = new Metar(null, "METAR " + icaoCode + " 121200Z 0902MPS 090V150 2000 " +
-                "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), subscription);
+                "R04/P2000N R22/P2000N OVC050 0/M01 Q1020=", LocalDateTime.now(), subscription, null,null,null,null);
 
         given(metarRepository.save(metar)).willThrow(RequestException.class);
         given(subscriptionRepository.getByIcaoCode(icaoCode)).willReturn(Optional.of(subscription));
