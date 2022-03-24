@@ -1,5 +1,7 @@
 package com.t2e.metarproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.t2e.metarproject.jsonview.MetarJsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,8 +31,14 @@ public class Metar {
     private Subscription subscription;
 
     private LocalDateTime timestamp;
+
+    @JsonView(MetarJsonView.MetarWindTemp.class)
     private Float windSpeed;
+
+    @JsonView(MetarJsonView.MetarWindTemp.class)
     private Float temperature;
+
+
     private Float visibility;
 
     @PrePersist
