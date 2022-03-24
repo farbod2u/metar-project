@@ -1,6 +1,8 @@
 package com.t2e.metarproject.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.t2e.metarproject.entity.Metar;
+import com.t2e.metarproject.jsonview.MetarJsonView;
 import com.t2e.metarproject.service.MetarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ public class AirportController {
 
     private final MetarService metarService;
 
+    @JsonView(MetarJsonView.MetarWindTemp.class)
     @GetMapping("/{icaoCode}/METAR")
     public ResponseEntity<Metar> getLastMetarByIcaoCode(@PathVariable String icaoCode) {
         return new ResponseEntity<>(metarService.getLastMetarByIcaoCode(icaoCode), HttpStatus.OK);
