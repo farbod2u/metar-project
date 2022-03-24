@@ -63,7 +63,7 @@ class MetarServiceTest {
                 .isInstanceOf(EntityNotFoundException.class)
                 .hasMessageContaining("Metar Data not fount for ");
     }
-//
+
 //    @Test
 //    void save() {
 //        //given
