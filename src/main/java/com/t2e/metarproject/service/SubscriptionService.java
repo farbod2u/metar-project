@@ -34,7 +34,8 @@ public class SubscriptionService {
     }
 
     public List<Subscription> getAll(Subscription example) {
-        example.setIcaoCode(example.getIcaoCode().toUpperCase());
+        if (example.getIcaoCode() != null)
+            example.setIcaoCode(example.getIcaoCode().toUpperCase());
         return subscriptionRepository.findAll(
                 where(predicateIcaoCode(example.getIcaoCode()))
                         .and(predicateActive(example.getActive()))
