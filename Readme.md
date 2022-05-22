@@ -2,7 +2,7 @@ To build and run metar-project:<br/>
 1- First install and run docker and docker composer.<br/>
 2- After that run following commands:<br/>
 $ cd /[path to metar-project]/<br/>
-$ mvn clean package<br/>docker
+$ mvn clean package<br/>
 $ docker image build . -t metar-project<br/>
 $ docker-compose up<br/>
 3- root address (locally) of program to browse in web browsers or postman <br/>
